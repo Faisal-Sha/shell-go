@@ -6,9 +6,20 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"os/signal"
 )
 
 func main() {
+
+	signalChan := make(chan os.Signal, 1)
+	signal.Notify(signalChan, os.Interrupt)
+
+	go func() {
+		for range signalChan {
+			fmt.Println("\nccsh> ")
+		}
+	}()
+
 	reader := bufio.NewReader(os.Stdin)
 
 	for {
