@@ -25,7 +25,7 @@ func main() {
 		cmd.Stderr = os.Stderr
 
 		if err := cmd.Run(); err != nil {
-			fmt.Println("Error:", err)
+			fmt.Println("No such file or directory:", err)
 		}
 	}
 }
